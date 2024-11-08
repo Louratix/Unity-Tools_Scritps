@@ -12,12 +12,14 @@ public class SavingSettings : MonoBehaviour
 {
     static LightingSettings Saved_SourceLightingSettings = default;
     static LightingSettings Current_SourceLightingSettings = default;
-    
+    static Material Current_skybox;
+    static Material Saved_Skybox;
 
     static public void Save(string Name)
     {
         AssetDatabase.CreateFolder("Assets/Edouard/Tools/DayNightTool/SavedSettings", Name);
         string Path = "Assets/Edouard/Tools/DayNightTool/SavedSettings/" + Name + "/" + Name +".lighting";
+        string PathSkybox = "Assets/Edouard/Tools/DayNightTool/SavedSettings/" + Name + "/" + Name +".mat";
         
         var activeScene = EditorSceneManager.GetActiveScene();
 
@@ -29,11 +31,24 @@ public class SavingSettings : MonoBehaviour
         }
         else
         {
+            LightingSettings lightingSettings = new LightingSettings();
+            AssetDatabase.CreateAsset(lightingSettings,Path);
+            Debug.LogErrorFormat("No Current Lightning Settings to save!");
+        }
+
+        if(RenderSettings.skybox)
+        {
+            Current_skybox = RenderSettings.skybox; 
+            Saved_Skybox = Instantiate(Current_skybox);
+            AssetDatabase.CreateAsset(Saved_Skybox,PathSkybox);
+        }
+        else
+        {
             Debug.LogErrorFormat("No Current Lightning Settings to save!");
         }
     }
 }
 
-///Lightmapping.SetLightingSettingsForScene(activeScene, Saved_SourceLightingSettings); 
+
 
 

@@ -9,8 +9,8 @@ public class UpdateSettings : MonoBehaviour
     {
         string PathSkybox = "Assets/Edouard/Tools/DayNightTool/SavedSettings/" + Name + "/" + Name +".mat";
         Material Current_skybox = RenderSettings.skybox;
-        AssetDatabase.DeleteAsset(PathSkybox); 
         Material Saved_Skybox = Instantiate(Current_skybox);
+        AssetDatabase.DeleteAsset(PathSkybox); 
         AssetDatabase.CreateAsset(Saved_Skybox, PathSkybox);
     }
 }

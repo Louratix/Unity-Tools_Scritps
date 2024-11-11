@@ -11,7 +11,7 @@ using UnityEditor.Overlays;
 
 public class SetSettings : MonoBehaviour
 {
-    static public void Apply(string Name, VisualElement row)
+    static public void Apply(string Name)
     {
         var activeScene = EditorSceneManager.GetActiveScene();
         LightingSettings Saved_SourceLightingSettings = (LightingSettings)AssetDatabase.LoadAssetAtPath("Assets/Edouard/Tools/DayNightTool/SavedSettings/" + Name + "/" + Name +".lighting", typeof(LightingSettings));

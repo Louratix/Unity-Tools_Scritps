@@ -56,7 +56,7 @@ public class DayNightSkyboxOverlay : Overlay
     {
         var row = new VisualElement();
         row.style.flexDirection = FlexDirection.Row;
-        Button button = new Button(() => SetSetting(Name, root)){ name=Name, text = Name };
+        Button button = new Button(() => SetSetting(Name)){ name=Name, text = Name };
         Debug.Log(Name);
         row.Add(button);
         row.Add(new Button(() => Update(Name)) { name= Name +"S" ,text = "Save", visible = true});
@@ -64,12 +64,12 @@ public class DayNightSkyboxOverlay : Overlay
         root.Add(row);
     }
 
-    private void SetSetting(string Name, VisualElement row)
+    private void SetSetting(string Name)
     {
         //row.Query().Where(elem => elem.name == Name + "S").ForEach(elem => elem.visible = false);
         //row.Query().Where(elem => elem.name == Name + "D").ForEach(elem => elem.visible = false);
 
-        SetSettings.Apply(Name, row);
+        SetSettings.Apply(Name);
 
         //List<VisualElement> SaveButton = row.Query(Name +"S").ToList();
         //List<VisualElement> DeleteButton = row.Query(Name +"D").ToList();
@@ -89,6 +89,7 @@ public class DayNightSkyboxOverlay : Overlay
     private void Update(string Name)
     {
         UpdateSettings.UpdateSetting(Name);
+        SetSettings.Apply(Name);
     }
 
 

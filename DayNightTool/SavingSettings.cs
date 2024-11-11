@@ -44,7 +44,7 @@ public class SavingSettings : MonoBehaviour
         }
         else
         {
-            Debug.LogErrorFormat("No Current Lightning Settings to save!");
+            Debug.LogErrorFormat("No Current Skybox selected");
         }
     }
 }
